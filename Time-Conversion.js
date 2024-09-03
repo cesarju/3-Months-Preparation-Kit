@@ -24,21 +24,23 @@
 
 //primero vamos a separa en un vecto para saber si es AM o PM
 
-const s = "08:00:00AM";
-
-const h = s.slice(0, 8);
-const format = s.slice(8);
-
-let hrs = h.split(":");
-console.log(hrs);
-
-if (format == "PM") {
-  hrs[0] = Number(hrs[0]) + 12;
-  console.log(hrs);
-} else {
-  console.log(hrs);
-}
+const s = "12:45:54AM";
 
 function timeConversion(s) {
   // Write your code here
+  const h = s.slice(0, 8);
+  const format = s.slice(8);
+
+  let hrs = h.split(":");
+  if (format == "PM") {
+    if (hrs[0] !== "12") {
+      hrs[0] = Number(hrs[0]) + 12;
+    }
+  } else if (hrs[0] === "12") {
+    hrs[0] = String(Number(hrs[0] - 12)) + "0";
+  }
+  return hrs.join(":");
 }
+
+const result = timeConversion(s);
+console.log(result);
